@@ -1,10 +1,6 @@
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import FormComponent from './componentes/form/formComponent';
+
+
+import { RegistrationForm } from "./componentes/form/formComponent";
 
 interface Props {
   formData: FormData;
@@ -34,23 +30,28 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-gray-300 h-screen flex items-center justify-center">
-
-
-      <Tabs defaultValue="account" className="w-[800px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="pessoal">Dados Pessoais</TabsTrigger>
-          <TabsTrigger value="residencial">Dados Residenciais</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="pessoal">
-          <FormComponent formData={formData} />
-        </TabsContent>
-
-      </Tabs>
-
-
-
-    </main>
-  );
+    <RegistrationForm />
+  )
 }
+
+
+
+
+{/* <main className="bg-gray-300 h-screen flex items-center justify-center">
+
+
+<Tabs defaultValue="account" className="w-[800px]">
+  <TabsList className="grid w-full grid-cols-2">
+    <TabsTrigger value="pessoal">Dados Pessoais</TabsTrigger>
+    <TabsTrigger value="residencial">Dados Residenciais</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="pessoal">
+    <FormComponent formData={formData} />
+  </TabsContent>
+
+</Tabs>
+
+
+
+</main> */}
