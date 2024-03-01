@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": true, // Permitir o uso de JavaScript com sintaxe TypeScript
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
