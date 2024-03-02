@@ -6,9 +6,15 @@ type CheckFieldsProps = {
     options: string[]; // Lista de opções
     control: Control<any>;
     name: string;
+    onChange: (selectedOption: string) => void; // Apenas a opção selecionada
 };
 
-export function CheckFields({ id, label, options, control, name }: CheckFieldsProps) {
+export function CheckFields({ id, label, options, control, name, onChange }: CheckFieldsProps) {
+    const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedOption = event.target.value;
+        console.log('teste')
+    };
+
     return (
         <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">{label}</label>
@@ -22,6 +28,7 @@ export function CheckFields({ id, label, options, control, name }: CheckFieldsPr
                             name={name}
                             value={option}
                             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                            onChange={handleOptionChange}
                         />
                         <label htmlFor={`${id}-${index}`} className="ml-2 block text-sm text-gray-900">{option}</label>
                     </div>
