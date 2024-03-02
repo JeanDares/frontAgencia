@@ -1,4 +1,5 @@
 'use client'
+
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,25 +8,26 @@ import { z } from "zod";
 import InputField from "./inputField";
 
 const formSchema = z.object({
-    nome: z.string().min(2).max(50),
-    sobrenome: z.string().min(2).max(50),
-    email: z.string().email(),
+    nome: z.string().min(2, { message: 'O nome deve ter pelo menos 2 caracteres' }).max(50, { message: 'O nome não pode ter mais de 50 caracteres' }),
+    sobrenome: z.string().min(2, { message: 'O sobrenome deve ter pelo menos 2 caracteres' }).max(50, { message: 'O sobrenome não pode ter mais de 50 caracteres' }),
+    email: z.string().email({ message: 'O email fornecido não é válido' }),
     telefone: z.string(),
     dataNascimento: z.string().optional(),
     estadoCivil: z.string().optional(),
     nacionalidade: z.string().optional(),
-    cpf: z.string().min(11).max(14),
-    rg: z.string().min(2).max(20),
+    cpf: z.string().min(11, { message: 'O CPF deve ter pelo menos 11 caracteres' }).max(14, { message: 'O CPF não pode ter mais de 14 caracteres' }),
+    rg: z.string().min(2, { message: 'O RG deve ter pelo menos 2 caracteres' }).max(20, { message: 'O RG não pode ter mais de 20 caracteres' }),
     profissao: z.string().optional(),
     nomeConjuge: z.string().optional(),
-    cpfConjuge: z.string().min(11).max(14).optional(),
+    cpfConjuge: z.string().min(11, { message: 'O CPF do cônjuge deve ter pelo menos 11 caracteres' }).max(14, { message: 'O CPF do cônjuge não pode ter mais de 14 caracteres' }).optional(),
     endereco: z.string().optional(),
     bairro: z.string().optional(),
     cidade: z.string().optional(),
-    codigoPostal: z.string().min(8).max(9).optional(),
+    codigoPostal: z.string().min(8, { message: 'O código postal deve ter pelo menos 8 caracteres' }).max(9, { message: 'O código postal não pode ter mais de 9 caracteres' }).optional(),
     observacao: z.string().optional(),
     dataCompra: z.string().optional(),
-})
+});
+
 
 export function RegistrationForm() {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -33,30 +35,32 @@ export function RegistrationForm() {
         defaultValues: Object.fromEntries(
             Object.entries(formSchema.shape).map(([key, value]) => [key, ""])
         ),
-    })
+    });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+        console.log(values);
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-lg mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
-                <div className="grid grid-cols-1 gap-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4">
                     {Object.entries(formSchema.shape).map(([key, value]) => (
-                        <InputField
-                            key={key}
-                            control={form.control}
-                            name={key}
-                            label={key.replace(/([A-Z])/g, ' $1').trim()} // Adiciona espaços antes de letras maiúsculas
-                            placeholder={key}
-                        />
+                        <div key={key} className="mb-4">
+                            <InputField
+                                control={form.control}
+                                name={key}
+                                label={key.replace(/([A-Z])/g, ' $1').trim()}
+                                placeholder={key}
+
+                            />
+                        </div>
                     ))}
                 </div>
-                <Button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4">
+                <Button type="submit" className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">
                     Submit
                 </Button>
             </form>
         </Form>
-    )
+    );
 }

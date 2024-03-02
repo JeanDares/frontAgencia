@@ -1,4 +1,4 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormField, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 export interface InputFieldProps {
@@ -21,18 +21,20 @@ const InputField = ({ control, name, label, placeholder }: InputFieldProps) => {
             control={control}
             name={name}
             render={({ field }) => (
-                <FormItem className="flex flex-col">
-                    <FormLabel className="text-gray-600">{capitalizedLabel}</FormLabel>
-                    <FormControl className="mt-1 relative rounded-md shadow-sm">
+                <div className="mb-4 mx-2">
+                    <FormLabel className="block text-gray-700 text-sm font-bold mb-2">{capitalizedLabel}</FormLabel>
+                    <div className="mb-2">
                         <Input
-                            placeholder={"Digite seu" + placeholder}
+                            placeholder={"Digite seu " + placeholder}
                             type="text"
                             {...field}
-                            className="block w-full pr-10 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 rounded-md"
+                            className="w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
+                    </div>
+                    <FormMessage style={{ fontSize: '0.75rem', color: '#e53e3e' }} />
+
+
+                </div>
             )}
         />
     );
