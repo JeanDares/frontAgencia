@@ -99,13 +99,14 @@ export function RegistrationForm() {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%">
                     <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">Preencha o formulário:</h1>
                     <Accordion type="multiple" defaultValue={['compra', 'pessoal']} >
-                        <RegistrationAccordion title='Dados da Compra' value="compra" dataFields={purchaseFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
-                        <RegistrationAccordion title='Dados Pessoais' value="pessoal" dataFields={personalFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
-                        <RegistrationAccordion title='Endereço' value="endereco" dataFields={addressFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
 
+                        <RegistrationAccordion title='Dados Pessoais' value="pessoal" dataFields={personalFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
                         {checkboxValue === 'casado' && (
                             <RegistrationAccordion title={'Dados do Cônjuge'} value="conjuge" dataFields={spouseFields} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} control={form.control} />
                         )}
+                        <RegistrationAccordion title='Endereço' value="endereco" dataFields={addressFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
+                        <RegistrationAccordion title='Dados da Compra' value="compra" dataFields={purchaseFields} control={form.control} setCheckboxValue={setCheckboxValue} checkboxValue={checkboxValue} />
+
                     </Accordion>
 
                     <Button type="submit" className="bg-violet-600 hover:bg-violet-500 text-white font-bold py-2 px-4 rounded mt-4">
