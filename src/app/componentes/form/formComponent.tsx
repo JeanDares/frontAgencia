@@ -1,10 +1,10 @@
 'use client'
-
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { CheckFields } from "./checkFilds";
 import InputField from "./inputField";
 
 const formSchema = z.object({
@@ -41,19 +41,30 @@ export function RegistrationForm() {
         console.log(values);
     }
 
+    const estadoCivilOptions = ["Solteiro(a)", "Casado(a)", "Divorciado(a)"];
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4">
                     {Object.entries(formSchema.shape).map(([key, value]) => (
                         <div key={key} className="mb-4">
-                            <InputField
-                                control={form.control}
-                                name={key}
-                                label={key.replace(/([A-Z])/g, ' $1').trim()}
-                                placeholder={key}
-
-                            />
+                            {key === "estadoCivil" ? (
+                                <CheckFields
+                                    id="estadoCivil"
+                                    control={form.control}
+                                    name={key}
+                                    label={key.replace(/([A-Z])/g, ' $1').trim()}
+                                    options={estadoCivilOptions}
+                                />
+                            ) : (
+                                <InputField
+                                    control={form.control}
+                                    name={key}
+                                    label={key.replace(/([A-Z])/g, ' $1').trim()}
+                                    placeholder={key}
+                                />
+                            )}
                         </div>
                     ))}
                 </div>
