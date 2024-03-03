@@ -1,18 +1,18 @@
 export const personalFields = {
   nome: {
-    label: "Nome",
+    label: "Nome*",
     placeholder: "Digite seu nome",
   },
   sobrenome: {
-    label: "Sobrenome",
+    label: "Sobrenome*",
     placeholder: "Digite seu sobrenome",
   },
   email: {
-    label: "Email",
+    label: "Email*",
     placeholder: "Digite seu email",
   },
-  telefone: {
-    label: "Telefone",
+  telefoneCelular: {
+    label: "Telefone*",
     placeholder: "Digite seu telefone",
   },
   dataNascimento: {
@@ -20,16 +20,16 @@ export const personalFields = {
     placeholder: "DD/MM/AAAA",
   },
   cpf: {
-    label: "CPF",
+    label: "CPF*",
     placeholder: "000.000.000-00",
   },
   rg: {
     label: "RG",
     placeholder: "Digite seu RG",
   },
-  nacionalidade: {
-    label: "Nacionalidade",
-    placeholder: "Digite sua nacionalidade",
+  naturalidade: {
+    label: "Naturalidade",
+    placeholder: "Digite sua naturalidade",
   },
   profissao: {
     label: "Profissão",
@@ -42,21 +42,21 @@ export const personalFields = {
 };
 
 export const addressFields = {
-  codigoPostal: {
-    label: "Código Postal (CEP)",
+  cep: {
+    label: "CEP*",
     placeholder: "00000-000",
   },
-  endereco: {
-    label: "Endereço",
+  enderecoResidencial: {
+    label: "Endereço*",
     placeholder: "Digite seu endereço",
   },
   bairro: {
-    label: "Bairro",
+    label: "Bairro*",
     placeholder: "Digite seu bairro",
   },
-  cidade: {
-    label: "Cidade",
-    placeholder: "Digite sua cidade",
+  municipio: {
+    label: "Município*",
+    placeholder: "Digite seu município",
   },
 };
 

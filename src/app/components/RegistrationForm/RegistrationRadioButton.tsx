@@ -1,17 +1,17 @@
-import { FormField, FormLabel } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import React from 'react'
+import { FormField, FormLabel } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import React from 'react';
 
-interface RegistrationCheckboxProps {
-  setCheckboxValue: React.Dispatch<React.SetStateAction<string>>;
-  checkboxValue: string;
+interface RegistrationRadioButtonProps {
+  setRadioButtonValue: React.Dispatch<React.SetStateAction<string>>;
+  RadioButtonValue: string;
   label: string;
   control: any;
   name: string;
 }
 
-export const RegistrationCheckbox = ({ setCheckboxValue, checkboxValue, label, control, name }: RegistrationCheckboxProps) => {
+export const RegistrationRadioButton = ({ setRadioButtonValue, RadioButtonValue, label, control, name }: RegistrationRadioButtonProps) => {
   return (
     <FormField
       control={control}
@@ -20,9 +20,9 @@ export const RegistrationCheckbox = ({ setCheckboxValue, checkboxValue, label, c
         <div className="mb-4 mx-2">
           <FormLabel className="block text-gray-700 text-sm font-bold mb-2">{label}</FormLabel>
           <RadioGroup defaultValue="option-one" onValueChange={(value) => {
-            setCheckboxValue(value)
+            setRadioButtonValue(value)
             return field.onChange(value)
-          }} value={checkboxValue} className='flex'>
+          }} value={RadioButtonValue} className='flex'>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="solteiro" id="solteiro" />
               <Label htmlFor="solteiro">Solteiro</Label>

@@ -2,9 +2,9 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/
 import React from 'react';
 
 
-import { RegistrationCheckbox } from './RegistrationCheckbox';
 import { RegistrationDatePicker } from './RegistrationDatePicker';
 import { RegistrationInput } from './RegistrationInput';
+import { RegistrationRadioButton } from './RegistrationRadioButton';
 
 interface RegistrationAccordion {
   dataFields: any;
@@ -32,15 +32,20 @@ export const RegistrationAccordion = ({ dataFields, control, value, title, setCh
           {Object.entries(dataFields as DataFields).map(([key, { label, placeholder }]) => (
 
             key === 'estadoCivil' ? (
-              <RegistrationCheckbox key={key}
+              <RegistrationRadioButton key={key}
                 control={control}
                 name={key}
                 label={label}
-                setCheckboxValue={setCheckboxValue}
-                checkboxValue={checkboxValue}
+                setRadioButtonValue={setCheckboxValue}
+                RadioButtonValue={checkboxValue}
               />
             ) : key === 'dataCompra' || key === 'dataNascimento' ? (
-              <RegistrationDatePicker />
+              <RegistrationDatePicker
+                control={control}
+                name={key}
+                label={label}
+                placeholder={placeholder}
+              />
             ) : (
               <RegistrationInput key={key}
                 control={control}
