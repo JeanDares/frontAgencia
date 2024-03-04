@@ -40,7 +40,7 @@ export const RegistrationAccordion = ({ dataFields, control, value, title, setCh
                 RadioButtonValue={checkboxValue}
               />
             ) : key === 'dataCompra' || key === 'dataNascimento' ? (
-              <RegistrationDatePicker
+              <RegistrationDatePicker key={key}
                 control={control}
                 name={key}
                 label={label}

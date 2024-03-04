@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button"
 import {
     Table,
@@ -8,19 +9,21 @@ import {
     TableHeader,
     TableRow
 } from "@/components/ui/table"
+import { Pencil } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-interface DataUserProps {
-    id: string,
-    name: string,
-    lastName: string,
-    cpf: string,
+interface usersProps {
+    users: {
+        id: string,
+        nome: string,
+        sobrenome: string,
+        cpf: string,
+    }[] | undefined
 }
 
-
-
-
-export const List = ({ id, name, lastName, cpf }: DataUserProps) => {
+export const List = ({ users }: usersProps) => {
+    const router = useRouter()
     return (
 
         <div>
@@ -31,16 +34,21 @@ export const List = ({ id, name, lastName, cpf }: DataUserProps) => {
                         <TableHead >Nome</TableHead>
                         <TableHead>Sobrenome</TableHead>
                         <TableHead>CPF</TableHead>
+                        <TableHead>Editar</TableHead>
                     </TableRow>
                 </TableHeader>
 
                 <TableBody>
-                    <TableRow>
-                        <TableCell className="font-medium">{id}</TableCell>
-                        <TableCell>{name}</TableCell>
-                        <TableCell> {lastName} </TableCell>
-                        <TableCell > {cpf} </TableCell>
-                    </TableRow>
+                    {users && users.map((user) => (
+                        <TableRow key={user.id} >
+                            <TableCell>{user.id}</TableCell>
+                            <TableCell>{user.nome}</TableCell>
+                            <TableCell> {user.sobrenome} </TableCell>
+                            <TableCell >{user.cpf}</TableCell>
+                            <TableCell className="cursor-pointer" onClick={() => router.push("/formulario/editar/")}><Pencil className="w-4 h-4" /></TableCell>
+                        </TableRow>
+                    ))}
+
                 </TableBody>
             </Table>
 
