@@ -34,7 +34,7 @@ export function EditForm({ userId }: EditFormProps) {
 
     useEffect(() => {
         handleData()
-    }, [])
+    },)
 
     const [maritalStatus, setMaritalStatus] = useState('')
 

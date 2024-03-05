@@ -15,6 +15,7 @@ import { formSchema, formWithSpouseSchema } from "../Form/validation";
 
 export function RegistrationForm() {
     const [maritalStatus, setMaritalStatus] = useState('')
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
 
     useEffect(() => {
@@ -28,7 +29,7 @@ export function RegistrationForm() {
         )
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const options = {
             method: 'POST',
             headers: {
@@ -38,17 +39,26 @@ export function RegistrationForm() {
         }
 
         try {
-            fetch("http://localhost:3001/users", options)
+            const response = await fetch("http://localhost:3001/users", options);
+            if (response.ok) {
+                setShowSuccessModal(true);
+            } else {
+                console.error("Erro ao enviar formulário");
+            }
         } catch (error) {
-            console.log(error)
+            console.error("Erro ao enviar formulário:", error);
         }
     }
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+    };
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}  >
                 <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">  Preencha o formulário:</h1>
-                <Accordion type="multiple" defaultValue={['compra', 'pessoal']} >
+                <Accordion type="multiple" defaultValue={['pessoal']} >
 
                     <FormAccordion title='Dados Pessoais' value="pessoal" dataFields={personalFields} control={form.control} setMaritalStatus={setMaritalStatus} maritalStatus={maritalStatus} />
                     {maritalStatus === 'casado' && (
@@ -66,6 +76,19 @@ export function RegistrationForm() {
                     Enviar
                 </Button>
             </form >
+
+            {showSuccessModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded shadow-lg">
+                        <p>Envio concluído com sucesso!</p>
+                        <div className="flex justify-end">
+                            <Button onClick={handleCloseModal}>
+                                <Link href="/lista">Fechar</Link>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </Form >
     );
 }

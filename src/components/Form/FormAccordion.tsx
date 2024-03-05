@@ -7,7 +7,7 @@ import { FormInput } from './FormInput';
 import { FormRadioButton } from './FormRadioButton';
 
 interface FormAccordion {
-  dataFields: any;
+  dataFields: Record<string, DataFielsValues>;
   control: any;
   value: string;
   title: string;
@@ -15,10 +15,10 @@ interface FormAccordion {
   maritalStatus?: string;
 }
 
-interface DataFields {
-  key: string;
-  value: { label: string; placeholder: string }
-}[]
+interface DataFielsValues {
+  label: string;
+  placeholder: string
+}
 
 export const FormAccordion = ({ dataFields, control, value, title, setMaritalStatus, maritalStatus }: FormAccordion) => {
 
@@ -29,15 +29,15 @@ export const FormAccordion = ({ dataFields, control, value, title, setMaritalSta
       </AccordionTrigger>
       <AccordionContent className="mt-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4">
-          {Object.entries(dataFields as DataFields).map(([key, { label, placeholder }]) => (
+          {Object.entries(dataFields).map(([key, { label, placeholder }]) => (
 
-            setMaritalStatus && maritalStatus && key === 'estadoCivil' ? (
+            key === 'estadoCivil' ? (
               <FormRadioButton key={key}
                 control={control}
                 name={key}
                 label={label}
-                setRadioButtonValue={setMaritalStatus}
-                RadioButtonValue={maritalStatus}
+                setRadioButtonValue={setMaritalStatus!}
+                RadioButtonValue={maritalStatus!}
               />
             ) : key === 'dataCompra' || key === 'dataNascimento' ? (
               <FormDatePicker key={key}
