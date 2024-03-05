@@ -46,8 +46,8 @@ export function RegistrationForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%">
-                <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">Preencha o formulário:</h1>
+            <form onSubmit={form.handleSubmit(onSubmit)}  >
+                <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">  Preencha o formulário:</h1>
                 <Accordion type="multiple" defaultValue={['compra', 'pessoal']} >
 
                     <FormAccordion title='Dados Pessoais' value="pessoal" dataFields={personalFields} control={form.control} setMaritalStatus={setMaritalStatus} maritalStatus={maritalStatus} />

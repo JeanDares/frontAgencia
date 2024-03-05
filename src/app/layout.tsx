@@ -17,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <p>PARAGRAFO DO LAYOUT</p>
-        {children}</body>
+        <div className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%" >
+          {children}
+        </div>
+
+      </body>
     </html>
   );
 }

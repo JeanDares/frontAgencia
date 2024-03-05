@@ -27,6 +27,8 @@ export const List = ({ users }: usersProps) => {
     return (
 
         <div>
+            <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">Lista de cadastro</h1>
+
             <Table>
                 <TableHeader>
                     <TableRow>

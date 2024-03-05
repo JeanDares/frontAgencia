@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { FormAccordion } from "../Form/FormAccordion";
 import { addressFields, personalFields, purchaseFields, spouseFields } from "../Form/utils";
 import { formSchema, formWithSpouseSchema } from "../Form/validation";
-import { useRouter } from "next/navigation"
 
 interface EditFormProps {
     userId: string
@@ -71,7 +71,7 @@ export function EditForm({ userId }: EditFormProps) {
     return (
         <>
             {user && <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-screen-lg mx-auto p-4 bg-white rounded-lg shadow-md w-80%">
+                <form onSubmit={form.handleSubmit(onSubmit)} >
                     <h1 className="text-lg bg-violet-500 text-violet-50 rounded-lg p-4">Edite o formulário:</h1>
                     <Accordion type="multiple" defaultValue={['compra', 'pessoal']} >
 
