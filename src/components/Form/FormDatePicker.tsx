@@ -19,14 +19,14 @@ import {
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 
-interface RegistrationDatePickerProps {
+interface FormDatePickerProps {
   control: any,
   name: string,
   label: string,
   placeholder: string
 }
 
-export function RegistrationDatePicker({ control, name, label, placeholder }: RegistrationDatePickerProps) {
+export function FormDatePicker({ control, name, label, placeholder }: FormDatePickerProps) {
 
 
   return (

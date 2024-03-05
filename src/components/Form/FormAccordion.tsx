@@ -2,17 +2,17 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/
 import React from 'react';
 
 
-import { RegistrationDatePicker } from './RegistrationDatePicker';
-import { RegistrationInput } from './RegistrationInput';
-import { RegistrationRadioButton } from './RegistrationRadioButton';
+import { FormDatePicker } from './FormDatePicker';
+import { FormInput } from './FormInput';
+import { FormRadioButton } from './FormRadioButton';
 
-interface RegistrationAccordion {
+interface FormAccordion {
   dataFields: any;
   control: any;
   value: string;
   title: string;
-  setCheckboxValue: React.Dispatch<React.SetStateAction<string>>;
-  checkboxValue: string;
+  setMaritalStatus?: React.Dispatch<React.SetStateAction<string>>;
+  maritalStatus?: string;
 }
 
 interface DataFields {
@@ -20,7 +20,7 @@ interface DataFields {
   value: { label: string; placeholder: string }
 }[]
 
-export const RegistrationAccordion = ({ dataFields, control, value, title, setCheckboxValue, checkboxValue }: RegistrationAccordion) => {
+export const FormAccordion = ({ dataFields, control, value, title, setMaritalStatus, maritalStatus }: FormAccordion) => {
 
   return (
     <AccordionItem value={value}>
@@ -31,23 +31,23 @@ export const RegistrationAccordion = ({ dataFields, control, value, title, setCh
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4">
           {Object.entries(dataFields as DataFields).map(([key, { label, placeholder }]) => (
 
-            key === 'estadoCivil' ? (
-              <RegistrationRadioButton key={key}
+            setMaritalStatus && maritalStatus && key === 'estadoCivil' ? (
+              <FormRadioButton key={key}
                 control={control}
                 name={key}
                 label={label}
-                setRadioButtonValue={setCheckboxValue}
-                RadioButtonValue={checkboxValue}
+                setRadioButtonValue={setMaritalStatus}
+                RadioButtonValue={maritalStatus}
               />
             ) : key === 'dataCompra' || key === 'dataNascimento' ? (
-              <RegistrationDatePicker key={key}
+              <FormDatePicker key={key}
                 control={control}
                 name={key}
                 label={label}
                 placeholder={placeholder}
               />
             ) : (
-              <RegistrationInput key={key}
+              <FormInput key={key}
                 control={control}
                 name={key}
                 label={label}

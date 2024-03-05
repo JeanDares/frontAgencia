@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import { List } from "../components/List/List"
+import { List } from "../../components/List/List"
 
 const Lista = () => {
 

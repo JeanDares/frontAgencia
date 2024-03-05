@@ -45,7 +45,7 @@ export const List = ({ users }: usersProps) => {
                             <TableCell>{user.nome}</TableCell>
                             <TableCell> {user.sobrenome} </TableCell>
                             <TableCell >{user.cpf}</TableCell>
-                            <TableCell className="cursor-pointer" onClick={() => router.push("/formulario/editar/")}><Pencil className="w-4 h-4" /></TableCell>
+                            <TableCell className="cursor-pointer" onClick={() => router.push(`/editar/${user.id}`)}><Pencil className="w-4 h-4" /></TableCell>
                         </TableRow>
                     ))}
 
