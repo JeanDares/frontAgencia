@@ -11,7 +11,7 @@ import { z } from "zod";
 import { FormAccordion } from "../Form/FormAccordion";
 import { addressFields, personalFields, purchaseFields, spouseFields } from "../Form/utils";
 import { formSchema, formWithSpouseSchema } from "../Form/validation";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://apiagencia-rmur.onrender.com";
 
 
 export function RegistrationForm() {

@@ -1,7 +1,7 @@
 'use client'
 
 import { Accordion } from "@/components/ui/accordion";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://apiagencia-rmur.onrender.com';
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";

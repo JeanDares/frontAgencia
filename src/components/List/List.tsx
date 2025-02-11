@@ -4,7 +4,7 @@ import { Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from 'react'; // Importe o useState
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://apiagencia-rmur.onrender.com";
 
 
 interface User {
