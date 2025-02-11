@@ -11,6 +11,7 @@ import { z } from "zod";
 import { FormAccordion } from "../Form/FormAccordion";
 import { addressFields, personalFields, purchaseFields, spouseFields } from "../Form/utils";
 import { formSchema, formWithSpouseSchema } from "../Form/validation";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
 
 
 export function RegistrationForm() {
@@ -29,26 +30,31 @@ export function RegistrationForm() {
         )
     });
 
+
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const options = {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(values)
-        }
+        };
 
         try {
-            const response = await fetch("http://localhost:3001/users", options);
+            const response = await fetch(`${API_BASE_URL}/users`, options);
+            const responseData = await response.json(); // Para capturar possíveis erros detalhados do backend
+
             if (response.ok) {
                 setShowSuccessModal(true);
             } else {
-                console.error("Erro ao enviar formulário");
+                console.error("Erro ao enviar formulário:", responseData?.message || "Erro desconhecido");
             }
         } catch (error) {
             console.error("Erro ao enviar formulário:", error);
         }
-    }
+    };
+
 
     const handleCloseModal = () => {
         setShowSuccessModal(false);

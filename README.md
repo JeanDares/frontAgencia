@@ -21,11 +21,11 @@ Open [http://localhost:3000](http://localhost:3000)
 
 #### Manipulação de Dados:
 
-- Apagar dados e tornar a massa mais realista.
+- Apagar dados e tornar a massa mais realista ✔️
 
 #### Layout:
 
-- Ajustar a tabela para que tenha o mesmo tamanho das outras páginas, utilizando a mesma div de container de formulário como referência.
+- Ajustar a tabela para que tenha o mesmo tamanho das outras páginas, utilizando a mesma div de container de formulário como referência. ✔️
 
 #### Estrutura de Dados:
 

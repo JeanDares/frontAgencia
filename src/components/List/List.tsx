@@ -4,6 +4,8 @@ import { Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from 'react'; // Importe o useState
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+
 
 interface User {
     id: string;
@@ -24,7 +26,7 @@ export const List = ({ users }: UsersProps) => {
 
     const deleteUser = async () => {
         try {
-            await fetch(`http://localhost:3001/users/${deletedUserId}`, { // Correção aqui
+            await fetch(`${API_BASE_URL}/users/${deletedUserId}`, { // Correção aqui
                 method: 'DELETE'
             });
             setShowModal(false);

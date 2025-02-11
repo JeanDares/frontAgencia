@@ -1,6 +1,7 @@
 'use client'
 
 import { Accordion } from "@/components/ui/accordion";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,7 +24,7 @@ export function EditForm({ userId }: EditFormProps) {
 
     const handleData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/users/${userId}`);
+            const response = await fetch(`${API_BASE_URL}/users/listar`);
             const data = await response.json();
             setUser(data)
             console.log(data);
@@ -51,22 +52,20 @@ export function EditForm({ userId }: EditFormProps) {
         form.reset(user);
     }, [form, user]);
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        const options = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-        }
-
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            fetch(`http://localhost:3001/users/${userId}`, options)
-            router.push("/lista")
+            const options = {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values),
+            };
+
+            await fetch(`${API_BASE_URL}/users/${userId}`, options);
+            router.push("/lista");
         } catch (error) {
-            console.log(error)
+            console.error("Erro ao salvar formulário:", error);
         }
-    }
+    };
 
     return (
         <>
